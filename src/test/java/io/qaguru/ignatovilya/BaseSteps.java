@@ -10,11 +10,11 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class BaseSteps {
 
-    private static final String BaseURL = "https://github.com/";
+    private static final String BASE_URL = "https://github.com/";
 
     @Step("Открываем страницу GitHub.com")
     public void openMainPage() {
-        open(BaseURL);
+        open(BASE_URL);
     }
 
     @Step("Ищем репозиторий {repository}")

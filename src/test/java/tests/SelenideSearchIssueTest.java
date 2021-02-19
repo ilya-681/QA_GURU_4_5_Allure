@@ -10,19 +10,19 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideSearchIssueTest {
 
-    private static final String RepositoryName = "eroshenkoam/allure-example";
-    private static final String Issue = "Listeners NamedBy";
+    private static final String REPOSITORY_NAME = "eroshenkoam/allure-example";
+    private static final String ISSUE = "Listeners NamedBy";
 
     @Test
     void simpleSelenideSearch() {
 
         open("https://github.com/");
 
-        $("[name=q]").setValue(RepositoryName).pressEnter();
-        $(byLinkText(RepositoryName)).click();
+        $("[name=q]").setValue(REPOSITORY_NAME).pressEnter();
+        $(byLinkText(REPOSITORY_NAME)).click();
         $(".UnderlineNav-body").$(byText("Issues")).click();
 
-        $(".repository-content ").shouldHave(Condition.text(Issue));
+        $(".repository-content ").shouldHave(Condition.text(ISSUE));
 
     }
 }

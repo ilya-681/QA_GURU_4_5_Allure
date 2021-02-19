@@ -16,14 +16,14 @@ import static io.qameta.allure.Allure.step;
 
 public class LambdaStepsSelenideSearchIssueTest {
 
-    private static final String BaseURL = "https://github.com/";
-    private static final String RepositoryName = "eroshenkoam/allure-example";
-    private static final String Issue = "Listeners NamedBy";
-    private static final String Issues = "Issues";
+    private static final String BASE_URL = "https://github.com/";
+    private static final String REPOSITORY_NAME = "eroshenkoam/allure-example";
+    private static final String ISSUE = "Listeners NamedBy";
+    private static final String ISSUES = "Issues";
 
     @Test
     @Owner("IgnatovIlya")
-    @Link(name = BaseURL, value = BaseURL)
+    @Link(name = BASE_URL, value = BASE_URL)
     @Tags({@Tag("web"), @Tag("critical")})
     @Severity(SeverityLevel.NORMAL)
 
@@ -32,25 +32,14 @@ public class LambdaStepsSelenideSearchIssueTest {
     @DisplayName("Поиск Issue по номеру в репозитории")
     void stepSelenideSearch() {
 
-        parameter("Repository", RepositoryName);
-        parameter("Issue", Issue);
+        parameter("Repository", REPOSITORY_NAME);
+        parameter("Issue", ISSUE);
 
-        step("Открываем страницу GitHub.com", () ->
-                open(BaseURL));
-
-        step("Ищем репозиторий " + RepositoryName, () -> {
-            $("[name=q]").setValue(RepositoryName).pressEnter();
-        });
-
-        step("Переходим в репозиторий " + RepositoryName, () ->
-                $(byLinkText(RepositoryName)).click());
-
-        step("Переходим в раздел " + Issues, () ->
-                $(".UnderlineNav-body").$(byText(Issues)).click());
-
-        step("Проверяем, что Issue с номером " + Issue + " существует", () -> {
-            $(".repository-content ").shouldHave(Condition.text(Issue));
-        });
+        step("Открываем страницу GitHub.com", () -> open(BASE_URL));
+        step("Ищем репозиторий " + REPOSITORY_NAME, () -> $("[name=q]").setValue(REPOSITORY_NAME).pressEnter());
+        step("Переходим в репозиторий " + REPOSITORY_NAME, () -> $(byLinkText(REPOSITORY_NAME)).click());
+        step("Переходим в раздел " + ISSUES, () -> $(".UnderlineNav-body").$(byText(ISSUES)).click());
+        step("Проверяем, что Issue с номером " + ISSUE + " существует", () -> $(".repository-content ").shouldHave(Condition.text(ISSUE)));
 
     }
 }
